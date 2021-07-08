@@ -13,9 +13,18 @@ function AboutUs() {
 function ArtistSpotlight({artist}) {
     return (
         <React.Fragment>
-            <h4>Artist Spotlight</h4>
-            <h5>{artist.name}</h5>
-            <p>This artist was featured because...</p>
+            <div clasName='row'>
+                <h4>Artist Spotlight</h4>
+            </div>
+            <div className='row'>
+                <div className='col-4'>
+                    <img src={artist.image} alt={artist.name} width='100%'/>
+                </div>
+                <div className='col'>
+                    <h5>{artist.name}</h5>
+                    <p>This artist was featured because...</p>
+                </div>
+            </div>
         </React.Fragment>
     );
 }

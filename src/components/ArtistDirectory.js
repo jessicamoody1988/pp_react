@@ -7,9 +7,9 @@ import {
     CardTitle
 } from 'reactstrap';
 
-function RenderDirectoryItem({ artist, onClick }) {
+function RenderDirectoryItem({ artist }) {
     return (
-        <Card body outline color='secondary' onClick={() => onClick(artist.id)}>
+        <Card body outline color='secondary'>
             <CardImg width='100%' src={artist.image} alt={artist.name} />
             <CardBody>
                 <CardTitle>{artist.name}</CardTitle>
@@ -23,10 +23,11 @@ function ArtistDirectory(props) {
     const artists = props.artists.map(artist => {
         return (
             <div key={artist.id} className='col-md-4 m-0'>
-                <RenderDirectoryItem artist={artist} onClick={props.onClick} />
+                <RenderDirectoryItem artist={artist} />
             </div>
         );
     })
+    
     return (
         <div className='container'>
             <div className='row'>

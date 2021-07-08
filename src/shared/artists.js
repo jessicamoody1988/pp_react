@@ -1,6 +1,7 @@
 export const ARTISTS = [
     {
         id: 0,
+        spotlight: true,
         name: 'Charlotte de Witte',
         image: 'assets/images/CharolotteDeWitte_360x360.jpg',
         genres: ['techno'],
@@ -9,6 +10,7 @@ export const ARTISTS = [
     },
     {
         id: 1,
+        spotlight: false,
         name: 'Carl Cox',
         image: 'assets/images/CarlCox_360x360.jpg',
         genres: ['house', 'tech house', 'techno'],
@@ -18,6 +20,7 @@ export const ARTISTS = [
     {
         id: 2,
         name: 'Joyhauser',
+        spotlight: false,
         image: 'assets/images/Joyhauser_360x360.jpg',
         genres: ['techno'],
         home: 'Belgium',
@@ -26,6 +29,7 @@ export const ARTISTS = [
     {
         id: 3,
         name: 'CamelPhat',
+        spotlight: false,
         image: 'assets/images/CamelPhat_360x360.jpg',
         genres: ['tech house', 'dance', 'house'],
         home: 'United Kingdom',

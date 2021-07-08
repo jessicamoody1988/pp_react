@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
     Carousel,
-    CarouselCaption,
     CarouselControl,
     CarouselItem
 } from 'reactstrap';
@@ -31,11 +30,6 @@ const UpcomingEventSlideshow = (props) => {
         setActiveIndex(prevIndex);
     }
 
-    const goToIndex = newIndex => {
-        if (animating) return;
-        setActiveIndex(newIndex);
-    }
-
     const slides = items.map(item => {
         return (
             <CarouselItem
@@ -44,7 +38,6 @@ const UpcomingEventSlideshow = (props) => {
                 key={item.src}
             >
                 <img src={item.src} alt={item.altText} />
-                <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
             </CarouselItem>
         );
     });

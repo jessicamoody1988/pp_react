@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
     Card,
     CardBody,
@@ -7,62 +7,34 @@ import {
     CardTitle
 } from 'reactstrap';
 
-class ArtistDirectory extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            selectedArtist: null
-        };
-    }
+function RenderDirectoryItem({ artist, onClick }) {
+    return (
+        <Card body outline color='secondary' onClick={() => onClick(artist.id)}>
+            <CardImg width='100%' src={artist.image} alt={artist.name} />
+            <CardBody>
+                <CardTitle>{artist.name}</CardTitle>
+                <CardText>{artist.description}</CardText>
+            </CardBody>
+        </Card>
+    );
+}
 
-    onArtistSelect(artist) {
-        this.setState({
-            selectedArtist: artist
-        });
-    }
-
-    renderSelectedArtist(artist) {
-        if(artist) {
-            return (
-                <Card>
-                    <CardImg top src={artist.image} alt={artist.name} />
-                    <CardBody>
-                        <CardTitle>{artist.name}</CardTitle>
-                        <CardText>{artist.description}</CardText>
-                    </CardBody>
-                </Card>
-            );
-        }
-        return <div></div>;
-    }
-
-    render() {
-        const artists = this.props.artists.map(artist => {
-            return (
-                <div key={artist.id} className='col-md-4 m-0'>
-                    <Card body outline color='secondary' onClick={() => this.onArtistSelect(artist)}>
-                        <CardImg width='100%' src={artist.image} alt={artist.name} />
-                        <CardBody>
-                            <CardTitle>{artist.name}</CardTitle>
-                            <CardText>{artist.description}</CardText>
-                        </CardBody>
-                    </Card>
-                </div>
-            );
-        })
+function ArtistDirectory(props) {
+    const artists = props.artists.map(artist => {
         return (
-            <div className='container'>
-                <div className='row'>
-                    {artists}
-                </div>
-                <div className='row'>
-                    <div className='col-md-5 m-1'>
-                        {this.renderSelectedArtist(this.state.selectedArtist)}
-                    </div>
-                </div>
+            <div key={artist.id} className='col-md-4 m-0'>
+                <RenderDirectoryItem artist={artist} onClick={props.onClick} />
             </div>
         );
-    }
+    })
+    return (
+        <div className='container'>
+            <div className='row'>
+                {artists}
+            </div>
+            
+        </div>
+    );
 }
 
 export default ArtistDirectory;

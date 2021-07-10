@@ -6,25 +6,23 @@ import Footer from './Footer';
 import Home from './Home';
 import Contact from './Contact';
 import Calendar from './Calendar';
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { ARTISTS } from '../shared/artists';
-import { EVENTS } from '../shared/events';
+import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+const mapStateToProps = state => {
+    return {
+        artists: state.artists,
+        events: state.events
+    };
+};
 
 class Main extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            artists: ARTISTS,
-            events: EVENTS
-        };
-    }
-
     render() {
         const HomePage = () => {
             return (
                 <Home 
-                    artist={this.state.artists.filter(artist => artist.spotlight)[0]} 
-                    events={this.state.events.filter(event => event.slideshow)}
+                    artist={this.props.artists.filter(artist => artist.spotlight)[0]} 
+                    events={this.props.events.filter(event => event.slideshow)}
                 />
             );
         }
@@ -32,7 +30,7 @@ class Main extends Component {
         const ArtistById = ({ match }) => {
             return (
                 <ArtistInfo
-                    artist={this.state.artists.filter(artist => artist.id === +match.params.artistId)[0]} />
+                    artist={this.props.artists.filter(artist => artist.id === +match.params.artistId)[0]} />
             );
         }
 
@@ -41,9 +39,9 @@ class Main extends Component {
                 <Header />
                 <Switch>
                     <Route path='/home' component={HomePage} />
-                    <Route exact path='/artists' render={() => <ArtistDirectory artists={this.state.artists} /> } />
+                    <Route exact path='/artists' render={() => <ArtistDirectory artists={this.props.artists} /> } />
                     <Route path='/artists/:artistId' component={ArtistById} />
-                    <Route path='/calendar' render={() => <Calendar events={this.state.events} /> } />
+                    <Route path='/calendar' render={() => <Calendar events={this.props.events} /> } />
                     <Route exact path='/contactus' component={Contact} />
                     <Redirect to='/home' />
                 </Switch>
@@ -53,4 +51,4 @@ class Main extends Component {
     }
 }
 
-export default Main;
+export default withRouter(connect(mapStateToProps)(Main));

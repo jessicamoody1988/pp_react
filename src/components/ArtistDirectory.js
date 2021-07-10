@@ -6,15 +6,18 @@ import {
     CardText,
     CardTitle
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 function RenderDirectoryItem({ artist }) {
     return (
         <Card body outline color='secondary'>
-            <CardImg width='100%' src={artist.image} alt={artist.name} />
-            <CardBody>
-                <CardTitle>{artist.name}</CardTitle>
-                <CardText>{artist.description}</CardText>
-            </CardBody>
+            <Link to={`/artists/${artist.id}`}>
+                <CardImg width='100%' src={artist.image} alt={artist.name} />
+                <CardBody>
+                    <CardTitle>{artist.name}</CardTitle>
+                    <CardText>{artist.description}</CardText>
+                </CardBody>
+            </Link>
         </Card>
     );
 }

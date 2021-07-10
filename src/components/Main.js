@@ -29,12 +29,20 @@ class Main extends Component {
             );
         }
 
+        const ArtistById = ({ match }) => {
+            return (
+                <ArtistInfo
+                    artist={this.state.artists.filter(artist => artist.id === +match.params.artistId)[0]} />
+            );
+        }
+
         return (
             <div>
                 <Header />
                 <Switch>
                     <Route path='/home' component={HomePage} />
                     <Route exact path='/artists' render={() => <ArtistDirectory artists={this.state.artists} /> } />
+                    <Route path='artists/:artistId' component={ArtistById} />
                     <Route path='/calendar' render={() => <Calendar events={this.state.events} /> } />
                     <Route exact path='/contactus' component={Contact} />
                     <Redirect to='/home' />
@@ -43,6 +51,6 @@ class Main extends Component {
             </div>
         );
     }
-    }
+}
 
 export default Main;

@@ -42,7 +42,7 @@ class Main extends Component {
                 <Switch>
                     <Route path='/home' component={HomePage} />
                     <Route exact path='/artists' render={() => <ArtistDirectory artists={this.state.artists} /> } />
-                    <Route path='artists/:artistId' component={ArtistById} />
+                    <Route path='/artists/:artistId' component={ArtistById} />
                     <Route path='/calendar' render={() => <Calendar events={this.state.events} /> } />
                     <Route exact path='/contactus' component={Contact} />
                     <Redirect to='/home' />

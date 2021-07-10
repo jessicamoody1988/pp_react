@@ -9,7 +9,11 @@ import {
     Input,
     Row
 } from 'reactstrap';
-import { Control, LocalForm } from 'react-redux-form';
+import { Control, LocalForm, Errors } from 'react-redux-form';
+
+const required = val => val && val.length;
+const minLength = len => val => val && (val.length >= len);
+const validEmail = val => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 
 class Contact extends Component {
     constructor(props) {
@@ -65,6 +69,18 @@ class Contact extends Component {
                                         name='firstName'
                                         placeholder='First Name'
                                         className='form-control'
+                                        validators={{
+                                            required
+                                        }}
+                                    />
+                                    <Errors
+                                        className='text-danger'
+                                        model='.firstName'
+                                        show='touched'
+                                        component='div'
+                                        messages={{
+                                            required: 'Required'
+                                        }}
                                     />
                                 </Col>
                             </Row>
@@ -77,6 +93,18 @@ class Contact extends Component {
                                         name='lastName'
                                         placeholder='Last Name'
                                         className='form-control'
+                                        validators={{
+                                            required
+                                        }}
+                                    />
+                                    <Errors
+                                        className='text-danger'
+                                        model='.lastName'
+                                        show='touched'
+                                        component='div'
+                                        messages={{
+                                            required: 'Required'
+                                        }}
                                     />
                                 </Col>
                             </Row>
@@ -89,6 +117,18 @@ class Contact extends Component {
                                         name='phone'
                                         placeholder='Phone Number'
                                         className='form-control'
+                                        validators={{
+                                            required
+                                        }}
+                                    />
+                                    <Errors
+                                        className='text-danger'
+                                        model='.phone'
+                                        show='touched'
+                                        component='div'
+                                        messages={{
+                                            required: 'Required'
+                                        }}
                                     />
                                 </Col>
                             </Row>
@@ -101,6 +141,20 @@ class Contact extends Component {
                                         name='email'
                                         placeholder='Email'
                                         className='form-control'
+                                        validators={{
+                                            required,
+                                            validEmail
+                                        }}
+                                    />
+                                    <Errors
+                                        className='text-danger'
+                                        model='.email'
+                                        show='touched'
+                                        component='div'
+                                        messages={{
+                                            required: 'Required',
+                                            validEmail: 'Invalid email'
+                                        }}
                                     />
                                 </Col>
                             </Row>
@@ -113,6 +167,20 @@ class Contact extends Component {
                                         name='feedback'
                                         rows='12'
                                         className='form-control'
+                                        validators={{
+                                            required,
+                                            minLength: minLength(50)
+                                        }}
+                                    />
+                                    <Errors
+                                        className='text-danger'
+                                        model='.feedback'
+                                        show='touched'
+                                        component='div'
+                                        messages={{
+                                            required: 'Required',
+                                            minLength: 'Minimum Length: 50 Characters'
+                                        }}
                                     />
                                 </Col>
                             </Row>

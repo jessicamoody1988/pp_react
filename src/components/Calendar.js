@@ -21,7 +21,7 @@ function RenderCalendar({ event }) {
 }
 
 function Calendar(props) {
-    const events = props.events.map(event => {
+    const events = props.events.sort((a,b) => +a.id - b.id).map(event => {
         return (
             <div key={event.id}>
                 <RenderCalendar event={event} />

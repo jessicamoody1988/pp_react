@@ -1,35 +1,72 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
+    Button,
     Card,
     CardBody,
     CardImg,
-    CardText,
     CardTitle
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Modal, ModalBody, ModalHeader } from 'reactstrap';
+
+class ArtistModal extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isModalOpen: false,
+            artist: props.artist
+        };
+
+        this.toggleModal = this.toggleModal.bind(this);
+    }
+
+    toggleModal() {
+        this.setState({
+            isModalOpen: !this.state.isModalOpen
+        });
+    }
+
+    render() {
+        return (
+            <React.Fragment>
+                <Button onClick={this.toggleModal}>Details</Button>
+                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                    <img src={this.state.artist.image} alt={this.state.artist.name} />
+                    <ModalHeader toggle={this.toggleModal}>{this.state.artist.name}</ModalHeader>
+                    <ModalBody>
+                        <p><strong>From: </strong>{this.state.artist.home}</p>
+                        <p><strong>Description: </strong>{this.state.artist.description}</p>
+                    </ModalBody>
+                </Modal>
+            </React.Fragment>
+        );
+    }
+
+}
 
 function RenderDirectoryItem({ artist }) {
     return (
         <Card body outline color='secondary'>
-            <Link to={`/artists/${artist.id}`}>
-                <CardImg width='100%' src={artist.image} alt={artist.name} />
-                <CardBody>
-                    <CardTitle>{artist.name}</CardTitle>
-                    <CardText>{artist.description}</CardText>
-                </CardBody>
-            </Link>
+            <CardImg width='100%' src={artist.image} alt={artist.name} />
+            <CardBody>
+                <CardTitle>{artist.name}</CardTitle>
+                <ArtistModal artist={artist} />
+            </CardBody>
         </Card>
     );
 }
 
 function ArtistDirectory(props) {
-    const artists = props.artists.map(artist => {
-        return (
-            <div key={artist.id} className='col-md-4 m-0'>
-                <RenderDirectoryItem artist={artist} />
-            </div>
-        );
-    })
+    const artists = props.artists
+        .sort((a, b) => (a.name > b.name ? 1 : -1))
+        .map(artist => {
+            return (
+                <div key={artist.id} className='col-md-4 m-0'>
+                    <RenderDirectoryItem artist={artist} />
+                </div>
+            );
+        }
+    );
     
     return (
         <div className='container'>

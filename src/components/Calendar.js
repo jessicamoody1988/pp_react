@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'reactstrap';
+import moment from 'moment';
 
 function RenderCalendar({ event }) {
     return (
@@ -9,8 +10,9 @@ function RenderCalendar({ event }) {
                     <img width='100%' src={event.image} alt={event.name} />
                 </div>
                 <div className='col'>
-                    <p>{event.startDate}</p>
-                    <p>{event.description}</p>
+                    <h3>{event.name}</h3>
+                    <p>{moment(event.start.toString()).format('MMMM Do YYYY, h:mm a')} - {moment(event.end.toString()).format('MMMM Do YYYY, h:mm a')}</p>
+                    <p><strong>Location: </strong>{event.location}</p>
                     <Button>More Info</Button>
                 </div>
             </div>

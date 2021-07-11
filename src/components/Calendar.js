@@ -9,6 +9,7 @@ function RenderCalendar({ event }) {
                     <img width='100%' src={event.image} alt={event.name} />
                 </div>
                 <div className='col'>
+                    <p>{event.startDate}</p>
                     <p>{event.description}</p>
                     <Button>More Info</Button>
                 </div>

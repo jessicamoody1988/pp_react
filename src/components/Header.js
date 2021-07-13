@@ -34,7 +34,7 @@ class Header extends Component {
                 </Jumbotron>
                 <Navbar dark sticky='top' expand='md' className='header'>
                     <div className='container'>
-                        <NavbarBrand className='mr-auto' href='/'><img src='assets/images/recordLogo_50x50.png' alt='record player logo' /></NavbarBrand>
+                        <NavbarBrand className='mr-auto' href='/'><img src='/assets/images/recordLogo_50x50.png' alt='record player logo' /></NavbarBrand>
                         <NavbarToggler onClick={this.toggleNav} />
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>

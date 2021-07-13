@@ -29,7 +29,7 @@ class Main extends Component {
 
         const EventPage = ({ match }) => {
             return (
-                <Events event={this.state.events.filter(event => event.id === +match.params.eventId)[0]} />
+                <Events event={this.props.events.filter(event => event.id === +match.params.eventId)[0]} />
             );
         }
 
@@ -39,7 +39,7 @@ class Main extends Component {
                 <Switch>
                     <Route path='/home' component={HomePage} />
                     <Route exact path='/artists' render={() => <ArtistDirectory artists={this.props.artists} /> } />
-                    <Route path='/calendar' render={() => <Calendar events={this.props.events} /> } />
+                    <Route exact path='/calendar' render={() => <Calendar events={this.props.events} /> } />
                     <Route path='/calendar/:eventId' component={EventPage} />
                     <Route exact path='/contactus' component={Contact} />
                     <Redirect to='/home' />

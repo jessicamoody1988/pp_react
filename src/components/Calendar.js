@@ -5,7 +5,7 @@ import moment from 'moment';
 function RenderCalendar({ event }) {
     return (
         <div className='container mt-1'>
-            <Link to={`/calendar/${event.id}`}>
+            <Link to={`/calendar/${event.id}`} className='calendar'>
                 <div className='row'>
                     <div className='col-md-4'>
                         <img width='100%' src={event.image} alt={event.name} />
@@ -24,8 +24,9 @@ function RenderCalendar({ event }) {
 function Calendar(props) {
     const events = props.events.sort((a,b) => a.id - b.id).map(event => {
         return (
-            <div key={event.id}>
+            <div key={event.id} >
                 <RenderCalendar event={event} />
+                <hr />
             </div>
         );
     })

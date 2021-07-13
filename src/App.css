@@ -44,3 +44,7 @@ button.artistCard:hover {
   background-color: black;
   color: white;
 }
+
+a.calendar {
+  color: black;
+}

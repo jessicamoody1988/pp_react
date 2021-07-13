@@ -29,7 +29,9 @@ class ArtistModal extends Component {
     render() {
         return (
             <React.Fragment>
-                <Button onClick={this.toggleModal}>Details</Button>
+                <Button onClick={this.toggleModal} className='artistCard'>
+                    <CardTitle>{this.state.artist.name}</CardTitle>
+                </Button>
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <img src={this.state.artist.image} alt={this.state.artist.name} />
                     <ModalHeader toggle={this.toggleModal}>{this.state.artist.name}</ModalHeader>
@@ -46,10 +48,9 @@ class ArtistModal extends Component {
 
 function RenderDirectoryItem({ artist }) {
     return (
-        <Card body outline color='secondary'>
+        <Card body outline color='secondary' className='m-1 artistCard'>
             <CardImg width='100%' src={artist.image} alt={artist.name} />
             <CardBody>
-                <CardTitle>{artist.name}</CardTitle>
                 <ArtistModal artist={artist} />
             </CardBody>
         </Card>

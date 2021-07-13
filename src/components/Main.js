@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import ArtistDirectory from './ArtistDirectory';
-import ArtistInfo from './ArtistInfo';
 import Header from './Header';
 import Footer from './Footer';
 import Home from './Home';
 import Contact from './Contact';
 import Calendar from './Calendar';
+import Events from './Events';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -27,10 +27,9 @@ class Main extends Component {
             );
         }
 
-        const ArtistById = ({ match }) => {
+        const EventPage = ({ match }) => {
             return (
-                <ArtistInfo
-                    artist={this.props.artists.filter(artist => artist.id === +match.params.artistId)[0]} />
+                <Events event={this.state.events.filter(event => event.id === +match.params.eventId)[0]} />
             );
         }
 
@@ -40,8 +39,8 @@ class Main extends Component {
                 <Switch>
                     <Route path='/home' component={HomePage} />
                     <Route exact path='/artists' render={() => <ArtistDirectory artists={this.props.artists} /> } />
-                    <Route path='/artists/:artistId' component={ArtistById} />
                     <Route path='/calendar' render={() => <Calendar events={this.props.events} /> } />
+                    <Route path='/calendar/:eventId' component={EventPage} />
                     <Route exact path='/contactus' component={Contact} />
                     <Redirect to='/home' />
                 </Switch>

@@ -8,4 +8,39 @@ body {
 
 .header {
   background-color: black;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+footer {
+  background-color: black;
+  margin-top: 5px;
+}
+
+.jumbotron {
+  background-color: black;
+  color: white;
+  margin-bottom: 0;
+}
+
+.artistCard {
+  margin: auto;
+  display: flex;
+}
+
+button.artistCard {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 0;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.5rem;
+  transition-duration: 0.4s;
+}
+
+button.artistCard:hover {
+  background-color: black;
+  color: white;
 }
